@@ -71,9 +71,9 @@ const Header = () => {
     <Wrapper>
       <Container>
         <HeaderWrapper>
-          <ImgWrapper>M-Pay</ImgWrapper>
+          <ImgWrapper>Smart Pay</ImgWrapper>
 
-          <HeaderContent>
+          {/* <HeaderContent>
             <HeaderH2>Hello, Ali</HeaderH2>
 
             <TimerWrapper>
@@ -82,7 +82,7 @@ const Header = () => {
               </ImgWrapper>
                 <P>14:40:30</P>
             </TimerWrapper>
-          </HeaderContent>
+          </HeaderContent> */}
 
           <Btn>Log Out</Btn>
         </HeaderWrapper>

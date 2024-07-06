@@ -210,32 +210,32 @@ const StaticsPage = () => {
                 <ContentWrapper2>
                     <StaticsBox>
                         <P>Users</P>
-                        <H4>+2M</H4>
+                        <H4>+ 5</H4>
                     </StaticsBox>
 
                     <StaticsBox>
                         <P>The number of transactions</P>
-                        <H4>1597426</H4>
+                        <H4>{localStorage.getItem('datalength')}</H4>
                     </StaticsBox>
 
                     <StaticsBox>
                         <P>The amount of money transferred</P>
-                        <H4>+40M</H4>
+                        <H4>+400 K</H4>
                     </StaticsBox>
 
                     <StaticsBox>
                         <P>The successful transactions</P>
-                        <H4>+60K</H4>
+                        <H4>{localStorage.getItem('datalength') - 19}</H4>
                     </StaticsBox>
 
                     <StaticsBox>
                         <P>The panding transactions</P>
-                        <H4>+10K</H4>
+                        <H4>0</H4>
                     </StaticsBox>
 
                     <StaticsBox>
                         <P>The canceled transactions</P>
-                        <H4>+16K</H4>
+                        <H4>{19}</H4>
                     </StaticsBox>
                 </ContentWrapper2>
               </StaticsContent>

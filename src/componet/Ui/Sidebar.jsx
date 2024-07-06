@@ -48,19 +48,19 @@ const Sidebar = () => {
       <SidebarWrapper>
         <Button
           className="navLink"
-          to="/"
+          to="/PaymentsOverview"
           style={{ textDecoration: "none" }}
         >
           <Img src={icon1} style={{ fontSize: "20px" }} />
         </Button>
 
-        <Button
+        {/* <Button
           className="navLink"
           to="/"
           style={{ textDecoration: "none" }}
         >
           <Img src={icon2} style={{ fontSize: "20px" }} />
-        </Button>
+        </Button> */}
 
         <Button
           className="navLink"

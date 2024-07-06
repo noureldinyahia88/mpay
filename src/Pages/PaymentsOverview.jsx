@@ -6,6 +6,9 @@ import { IoMdSearch } from "react-icons/io";
 import TableHeader from "../componet/Ui/TableHeader";
 import OperationsDetails from "../componet/OperationsDetails";
 import theme from "../componet/Variables";
+import HeaderUser from "../componet/Ui-User/HeaderUser";
+import { useQuery } from "@tanstack/react-query";
+import { fetchAdminTransactions } from "../Http/AdminReq";
 // import OperationsDetails from "../componet/OperationsDetails";
 
 const FilterWrapper = styled.div`
@@ -119,6 +122,9 @@ const Div = styled.div`
   justify-content: space-between;
 `;
 const ContentWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-top: 30px;
   width: 100%;
   display: flex;
@@ -144,6 +150,27 @@ const TableWrapper = styled.div`
   }
 `;
 const PaymentsOverview = () => {
+  const { data, isLoading, isError, error } = useQuery({
+    queryKey: ["AdminTransactions"],
+    queryFn: fetchAdminTransactions,
+    staleTime: 5000,
+    onSuccess: (data) => {
+      console.log("fetchAdminTransactions", data);
+      // console.log(data.length);
+    },
+  });
+  localStorage.setItem("datalength", data && data.length);
+
+  let content;
+
+  if (isLoading) {
+    content = <p>Loading...</p>;
+  }
+
+  if (isError) {
+    content = <h1>{error.message}</h1>;
+  }
+
   return (
     <PaymentsOverviewWrapper>
       <Header />
@@ -155,24 +182,23 @@ const PaymentsOverview = () => {
           <Container>
             <Div>
               <H1>Payments Overview</H1>
-              <SearchWrapper>
+              {/* <SearchWrapper>
                 <SearchBtn>
                   <IoMdSearch />
                 </SearchBtn>
                 <SearchInput placeholder="Search by amount , payment method..." />
-              </SearchWrapper>
+              </SearchWrapper> */}
             </Div>
             <ContentWrapper>
-              <FilterWrapper>
+              {/* <FilterWrapper>
                 <Label>Filter By:</Label>
-                {/* Filter by month */}
+
                 <Select>
                   <Option value="">Select Month</Option>
                   <Option value="January">January</Option>
                   <Option value="February">February</Option>
-                  {/* Add more months as needed */}
                 </Select>
-                {/* Filter by payment status */}
+
                 <CheckboxWrapper>
                   <CheckboxLabel>
                     <Checkbox type="checkbox" />
@@ -187,21 +213,20 @@ const PaymentsOverview = () => {
                     Failed
                   </CheckboxLabel>
                 </CheckboxWrapper>
-              </FilterWrapper>
+              </FilterWrapper> */}
               <TableWrapper>
                 <TableHeader />
-                {/* <OperationsDetails /> */}
-                <OperationsDetails />
-                <OperationsDetails />
-                <OperationsDetails />
-                <OperationsDetails />
-                <OperationsDetails />
-                <OperationsDetails />
-                <OperationsDetails />
-                <OperationsDetails />
-                <OperationsDetails />
-                <OperationsDetails />
-                <OperationsDetails />
+                {content ||
+                  data.map((trans) => (
+                    <OperationsDetails
+                      key={trans._id}
+                      id={trans._id}
+                      from={trans.from}
+                      to={trans.to}
+                      amount={trans.amount}
+                      createdAt={trans.createdAt}
+                    />
+                  ))}
               </TableWrapper>
             </ContentWrapper>
           </Container>

@@ -23,8 +23,9 @@ const TableHeader = () => {
         <H3>Payment ID</H3>
         <H3>Status</H3>
         <H3>Amount</H3>
-        <H3>p. method</H3>
+        {/* <H3>Cards</H3> */}
         <H3>Creation date</H3>
+        <H3>Fraud</H3>
     </TableHeaderWrapper>
   )
 }
